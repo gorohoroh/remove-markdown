@@ -35,6 +35,9 @@ module.exports = function (md, options) {
             // Remove abbreviations
             output = output.replace(/\*\[.*\]:.*\n/, '');
         }
+        if (options.somethingElse) {
+            output = output.trim();
+        }
         output = output
             // Remove HTML tags
             .replace(/<[^>]*>/g, '')
