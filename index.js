@@ -94,4 +94,3 @@ module.exports = function(md, options) {
   }
   return output;
 };
-
