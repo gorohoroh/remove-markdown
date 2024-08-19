@@ -15,6 +15,12 @@ describe('remove Markdown', function () {
       expect(removeMd(string)).to.equal(expected);
     });
 
+    it('should trim if the somethingElse option is set', function () {
+      const string = '## My header  ';
+      const expected = 'My header';
+      expect(removeMd(string, {somethingElse: true})).to.equal(expected);
+    });
+
     it('should leave non-matching markdown markdown', function () {
       const string = '*Javascript* developers* are the _best_.';
       const expected = 'Javascript developers* are the best.';
