@@ -121,7 +121,7 @@ describe('remove Markdown', function () {
             expect(removeMd(test.string)).to.equal(test.expected);
         });
     });
-    
+
     it('should remove blockquotes over multiple lines', function () {
       const string = '> I am a blockquote firstline  \n>I am a blockquote secondline';
       const expected = 'I am a blockquote firstline\nI am a blockquote secondline';
@@ -183,5 +183,37 @@ describe('remove Markdown', function () {
       const duration = Date.now()-start;
       expect(duration).to.be.lt(1000);
     });
+
+    it('should strip code tags', function () {
+      const string = 'In `Getting Started` we set up `something` foo.';
+      const expected = 'In Getting Started we set up something foo.';
+      expect(removeMd(string)).to.equal(expected);
+    });
+
+    it('should remove fences from multi-line code blocks', function () {
+
+      const string = "Paragraph before code block \n" +
+          "\n" +
+          "```\n" +
+          "val progressFlow = MutableStateFlow(false)\n" +
+          "\n" +
+          "fun invokeApiCall() {\n" +
+          "}\n" +
+          "```\n" +
+          "\n" +
+          "Paragraph after code block";
+
+      const expected = `Paragraph before code block
+
+val progressFlow = MutableStateFlow(false)
+
+fun invokeApiCall() {
+}
+
+Paragraph after code block`;
+      expect(removeMd(string)).to.equal(expected);
+    });
+
+
   });
 });
