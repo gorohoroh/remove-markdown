@@ -70,8 +70,8 @@ describe('remove Markdown', function () {
     });
 
     it('should remove emphasis only if there is no space between word and emphasis characters.', function () {
-      const string = 'There should be no _space_, *before* *closing * _ephasis character _.';
-      const expected = 'There should be no space, before *closing * _ephasis character _.';
+      const string = 'There should be no _space_, *before* *closing * _emphasis character _.';
+      const expected = 'There should be no space, before *closing * _emphasis character _.';
       expect(removeMd(string)).to.equal(expected);
     });
 
